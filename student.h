@@ -33,22 +33,22 @@ public:
 
     void inputData(int y) 
     {
-        gotoxy(2, y);
+        gotoxy(3, y);
         cin.getline(surname, 25);
-        gotoxy(23, y);
+        gotoxy(24, y);
         cin.getline(birthday, 15);
-        gotoxy(39, y);
+        gotoxy(40, y);
         cin >> group;
-        gotoxy(46, y);
+        gotoxy(49, y);
         cin >> avgScore;
-        gotoxy(55, y);
+        gotoxy(60, y);
         cin >> scholarshipAmount;
-        gotoxy(71, y);
+        gotoxy(76, y);
         cin >> yearOfEntered;
         cin.get();
-        gotoxy(86, y);
+        gotoxy(91, y);
         cin.getline(faculty, 25);
-        gotoxy(102, y);
+        gotoxy(110, y);
         cin.getline(profession, 25);
     }
 
@@ -56,12 +56,12 @@ public:
     {
         cout << "|" << setw(20) << surname
         << "|" << setw(15) << birthday
-        << "|" << setw(6) << group
-        << "|" << setw(8) << avgScore
+        << "|" << setw(8) << group
+        << "|" << setw(10) << avgScore
         << "|" << setw(15) << scholarshipAmount
         << "|" << setw(14) << yearOfEntered
-        << "|" << setw(15) << faculty
-        << "|" << setw(15) << profession
+        << "|" << setw(18) << faculty
+        << "|" << setw(21) << profession
         << "|" << endl;
     }
 };
