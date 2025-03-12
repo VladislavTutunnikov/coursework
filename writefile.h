@@ -30,6 +30,7 @@ void writeFile()
     }
     file.clear();
     file.close();
+    cout << endl;
 }
 
 #endif

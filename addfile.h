@@ -29,6 +29,7 @@ void addFile()
     }
     file.clear();
     file.close();
+    cout << endl;
 }
 
 #endif
