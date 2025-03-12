@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
 void printLineForTable()
@@ -9,10 +10,19 @@ void printLineForTable()
     cout << "+--------------------+---------------+------+--------+---------------+--------------+---------------+---------------+" << endl;
 }
 
-void printSpacerLine()
+void printTableCells()
 {
-    cout << "------------------------------------------------------" << endl;
+    cout << "|                    |               |      |        |               |              |               |               |" << endl;
+    cout << "+--------------------+---------------+------+--------+---------------+--------------+---------------+---------------+" << endl;
 }
+
+void gotoxy(int x, int y)                                                                                                                                                                                               
+{                                                                                                                                                                                                                                              
+    COORD coord;                                                                                                                                                                                                        
+    coord.X = x;                                                                                                                                                                                                        
+    coord.Y = y;                                                                                                                                                                                                        
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);                                                                                                                                                   
+}                                                                                                                                                                                                                       
 
 void printHeadForTable()
 {

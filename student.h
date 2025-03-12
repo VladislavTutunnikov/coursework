@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string.h>
+#include "table.h"
 using namespace std;
 
 class Student
@@ -30,24 +31,24 @@ public:
         strcpy(profession, "-");
     }
 
-    void inputData() 
+    void inputData(int y) 
     {
-        cout << "¬ведите фамилию и инициалы: ";
+        gotoxy(2, y);
         cin.getline(surname, 25);
-        cout << "¬ведите дату рождени€: ";
+        gotoxy(23, y);
         cin.getline(birthday, 15);
-        cout << "¬ведите группу: ";
+        gotoxy(39, y);
         cin >> group;
-        cout << "¬ведите средний балл: ";
+        gotoxy(46, y);
         cin >> avgScore;
-        cout << "¬ведите сумму стипендии: ";
+        gotoxy(55, y);
         cin >> scholarshipAmount;
-        cout << "¬ведите год зачислени€: ";
+        gotoxy(71, y);
         cin >> yearOfEntered;
         cin.get();
-        cout << "¬ведите факультет: ";
+        gotoxy(86, y);
         cin.getline(faculty, 25);
-        cout << "¬ведите специальность: ";
+        gotoxy(102, y);
         cin.getline(profession, 25);
     }
 

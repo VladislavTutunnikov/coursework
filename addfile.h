@@ -17,12 +17,15 @@ void addFile()
     cin >> countOfStudents;
     cin.get();
 
+    system("cls");
+    printHeadForTable();
+    int y = 3;
     for (int i = 1; i <= countOfStudents; i++)
     {
-        cout << "¬ведите данные о " << i << "-м студенте: " << endl;
-        student.inputData();
-        printSpacerLine();
+        printTableCells();
+        student.inputData(y);
         file.write((char*) & student, sizeof student);
+        y += 2;
     }
     file.clear();
     file.close();
