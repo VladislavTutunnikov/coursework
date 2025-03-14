@@ -26,6 +26,7 @@ void writeFile()
         printTableCells();
         student.inputData(y);
         file.write((char*) & student, sizeof student);
+        gotoxy(0, y + 2);
         y += 2;
     }
     file.clear();
