@@ -67,22 +67,36 @@ public:
 
     bool isSearchMetched(Student student)
     {
+        if (strcmp(surname, "0") == 0 
+        && birthdayFrom.isZero() && birthdayTo.isZero() 
+        && groupFrom == 0 && groupTo == 0 
+        && avgScoreFrom == 0 && avgScoreTo == 0 
+        && scholarshipAmountFrom == 0 && scholarshipAmountTo == 0 
+        && yearOfEnteredFrom == 0 && yearOfEnteredTo == 0 
+        && strcmp(faculty, "0") == 0 
+        && strcmp(profession, "0") == 0)
+        {
+            return false;
+        }
+
         if (strcmp(surname, "0") == 0)
         {
             ;
         }
         else
         {
-            if (strnicmp(student.getSurname(), surname, strlen(surname)) != 0) return false;
+            if (_strnicmp(student.getSurname(), surname, strlen(surname)) != 0)
+                return false;
         }
 
-        if(birthdayFrom.isZero() && birthdayTo.isZero())
+        if (birthdayFrom.isZero() && birthdayTo.isZero())
         {
             ;
         }
         else
         {
-            if (!student.getBirthday().isInRange(birthdayFrom, birthdayTo)) return false;
+            if (!student.getBirthday().isInRange(birthdayFrom, birthdayTo))
+                return false;
         }
 
         if (groupFrom == 0 && groupTo == 0)
@@ -91,7 +105,8 @@ public:
         }
         else
         {
-            if (student.getGroup() < groupFrom || student.getGroup() > groupTo) return false;
+            if (student.getGroup() < groupFrom || student.getGroup() > groupTo)
+                return false;
         }
 
         if (avgScoreFrom == 0 && avgScoreTo == 0)
@@ -100,7 +115,8 @@ public:
         }
         else
         {
-            if (student.getAvgScore() < avgScoreFrom || student.getAvgScore() > avgScoreTo) return false;
+            if (student.getAvgScore() < avgScoreFrom || student.getAvgScore() > avgScoreTo)
+                return false;
         }
 
         if (scholarshipAmountFrom == 0 && scholarshipAmountTo == 0)
@@ -109,7 +125,38 @@ public:
         }
         else
         {
-            if ()
+            if (student.getScholarshipAmount() < scholarshipAmountFrom || student.getScholarshipAmount() > scholarshipAmountTo)
+                return false;
+        }
+
+        if (yearOfEnteredFrom == 0 && yearOfEnteredTo == 0)
+        {
+            ;
+        }
+        else
+        {
+            if (student.getYearOfEntered() < yearOfEnteredFrom || student.getYearOfEntered() > yearOfEnteredTo)
+                return false;
+        }
+
+        if (strcmp(faculty, "0") == 0)
+        {
+            ;
+        }
+        else
+        {
+            if (_strnicmp(student.getFaculty(), faculty, strlen(faculty)) != 0)
+                return false;
+        }
+
+        if (strcmp(profession, "0") == 0)
+        {
+            ;
+        }
+        else
+        {
+            if (_strnicmp(student.getProfession(), profession, strlen(profession)) != 0)
+                return false;
         }
 
         return true;
@@ -118,8 +165,7 @@ public:
 
 void searchData()
 {
-    ifstream readFile("student.dat", ios::in);
-    ofstream writeFile("tmp.dat", ios::binary);
+    ifstream file("student.dat", ios::in);
 
     Student student;
     StudentForSearch studentForSearch;
@@ -132,10 +178,20 @@ void searchData()
     gotoxy(0, 7);
     cout << endl;
 
-    while (readFile.read((char *)&student, sizeof student))
+    bool isFound = false;
+
+    while (file.read((char *)&student, sizeof student))
     {
-        if (strnicmp(student.getSurname(), studentForSearch.getSurname(), strlen(studentForSearch.getSurname())) == 0 || strncmp(studentForSearch.getSurname, "0") == 0)
+        if (studentForSearch.isSearchMetched(student))
+        {
+            isFound = true;
+            student.printData();
+        }
+    }
+
+    if (!isFound)
+    {
+        cout << "Ничего не найдено" << endl;
     }
 }
-
 #endif
