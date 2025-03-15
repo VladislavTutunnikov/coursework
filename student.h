@@ -5,13 +5,14 @@
 #include <iomanip>
 #include <string.h>
 #include "table.h"
+#include "date.h"
 using namespace std;
 
 class Student
 {
 protected:
     char surname[25];
-    char birthday[15];
+    Date birthday;
     int group;
     float avgScore;
     float scholarshipAmount;
@@ -23,7 +24,7 @@ public:
     Student()
     {
         strcpy(surname, "Иванов И. И.");
-        strcpy(birthday, "00.00.0000");
+        //strcpy(birthday, "00.00.0000");
         group = 0;
         avgScore = 0.0;
         scholarshipAmount = 0;
@@ -37,7 +38,7 @@ public:
         gotoxy(3, y);
         cin.getline(surname, 25);
         gotoxy(24, y);
-        cin.getline(birthday, 15);
+        birthday.inputDate(y);
         gotoxy(40, y);
         cin >> group;
         gotoxy(49, y);
@@ -56,8 +57,9 @@ public:
     void printData()
     {
         cout << "|" << setw(20) << surname
-             << "|" << setw(15) << birthday
-             << "|" << setw(8) << group
+             << "|"; 
+             birthday.printDate();
+             cout << "|" << setw(8) << group
              << "|" << setw(10) << avgScore
              << "|" << setw(15) << scholarshipAmount
              << "|" << setw(14) << yearOfEntered
@@ -71,7 +73,7 @@ public:
         return surname;
     }
 
-    char *getBirthday()
+    Date getBirthday()
     {
         return birthday;
     }
