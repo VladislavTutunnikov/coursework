@@ -9,7 +9,7 @@ using namespace std;
 
 class Student
 {
-private:
+protected:
     char surname[25];
     char birthday[15];
     int group;
@@ -18,6 +18,7 @@ private:
     int yearOfEntered;
     char faculty[25];
     char profession[25];
+
 public:
     Student()
     {
@@ -31,7 +32,7 @@ public:
         strcpy(profession, "-");
     }
 
-    void inputData(int y) 
+    virtual void inputData(int y)
     {
         gotoxy(3, y);
         cin.getline(surname, 25);
@@ -55,15 +56,56 @@ public:
     void printData()
     {
         cout << "|" << setw(20) << surname
-        << "|" << setw(15) << birthday
-        << "|" << setw(8) << group
-        << "|" << setw(10) << avgScore
-        << "|" << setw(15) << scholarshipAmount
-        << "|" << setw(14) << yearOfEntered
-        << "|" << setw(18) << faculty
-        << "|" << setw(21) << profession
-        << "|" << endl;
+             << "|" << setw(15) << birthday
+             << "|" << setw(8) << group
+             << "|" << setw(10) << avgScore
+             << "|" << setw(15) << scholarshipAmount
+             << "|" << setw(14) << yearOfEntered
+             << "|" << setw(18) << faculty
+             << "|" << setw(21) << profession
+             << "|" << endl;
     }
+
+    char *getSurname()
+    {
+        return surname;
+    }
+
+    char *getBirthday()
+    {
+        return birthday;
+    }
+
+    int getGroup()
+    {
+        return group;
+    }
+
+    float getAvgScore()
+    {
+        return avgScore;
+    }
+
+    float getScholarshipAmount()
+    {
+        return scholarshipAmount;
+    }
+
+    int getYearOfEntered()
+    {
+        return yearOfEntered;
+    }
+
+    char *getFaculty()
+    {
+        return faculty;
+    }
+
+    char *getProfession()
+    {
+        return profession;
+    }
+
 };
 
 #endif
