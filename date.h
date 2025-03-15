@@ -9,24 +9,68 @@ using namespace std;
 class Date
 {
     int day;
-    int mounth;
+    int month;
     int year;
 
 public:
-    void inputDate(int y)
+    Date()
+    {
+        day = 0;
+        month = 0;
+        year = 0;
+    }
+
+    void inputDate(int x1, int x2, int x3, int y) //24 27 30
     {
         cout << "  .  .";
-        gotoxy(24, y);
+        gotoxy(x1, y);
         cin >> day;
-        gotoxy(27, y);
-        cin >> mounth;
-        gotoxy(30, y);
+        gotoxy(x2, y);
+        cin >> month;
+        gotoxy(x3, y);
         cin >> year;
     }
 
     void printDate()
     {
-        cout << "     " << setw(2) << day << "." << setw(2) << mounth << "." << setw(4) << year;
+        cout << "     " << setw(2) << day << "." << setw(2) << month << "." << setw(4) << year;
+    }
+
+    int getDay()
+    {
+        return day;
+    }
+    int getMonth()
+    {
+        return month;
+    }
+    int getYear()
+    {
+        return year;
+    }
+
+    bool isZero()
+    {
+        if (day == 0 && month == 0 && year == 0)
+            return true;
+        else
+            return false;
+    }
+
+    bool isInRange(Date dateFrom, Date dateTo)
+    {
+        if (year < dateFrom.getYear() || year > dateTo.getYear())
+            return false;
+        
+        if (year == dateFrom.getYear())
+            if (month < dateFrom.getMonth() || (month == dateFrom.getMonth() && day < dateFrom.getDay()))
+                return false;
+        
+        if (year == dateTo.getYear())
+            if (month > dateTo.getMonth() || (month == dateTo.getMonth() && day > dateTo.getDay()))
+                return false;
+        
+        return true;
     }
 };
 

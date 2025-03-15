@@ -38,7 +38,7 @@ public:
         gotoxy(3, y);
         cin.getline(surname, 25);
         gotoxy(24, y);
-        birthday.inputDate(y);
+        birthday.inputDate(24, 27, 30, y);
         gotoxy(40, y);
         cin >> group;
         gotoxy(49, y);

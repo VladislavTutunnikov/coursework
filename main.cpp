@@ -3,6 +3,7 @@
 #include "writefile.h"
 #include "readfile.h"
 #include "addfile.h"
+#include "searchdata.h" 
 using namespace std;
 
 int main()
@@ -22,7 +23,6 @@ int main()
              << "4 - Поиск данных." << endl
              << "5 - Удаление." << endl
              << "0 - Выход из программы." << endl;
-
         cout << "Сделайте выбор: ";
         cin >> userInput;
         cin.get();
@@ -46,6 +46,7 @@ int main()
         }
         case 4:
         {
+            searchData();
             break;
         }
         case 0:
