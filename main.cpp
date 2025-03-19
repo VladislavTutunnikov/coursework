@@ -55,7 +55,8 @@ int main()
         case 5:
         {
             system("cls");
-            animation();
+            welcomeAnimation();
+            goodbyeAnimation();
             break;
         }
         case 6:
