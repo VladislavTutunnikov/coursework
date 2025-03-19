@@ -6,6 +6,7 @@
 #include <string.h>
 #include "student.h"
 #include "table.h"
+#include "removedata.h"
 using namespace std;
 
 class StudentForSearch : public Student
@@ -67,14 +68,7 @@ public:
 
     bool isSearchMetched(Student student)
     {
-        if (strcmp(surname, "0") == 0 
-        && birthdayFrom.isZero() && birthdayTo.isZero() 
-        && groupFrom == 0 && groupTo == 0 
-        && avgScoreFrom == 0 && avgScoreTo == 0 
-        && scholarshipAmountFrom == 0 && scholarshipAmountTo == 0 
-        && yearOfEnteredFrom == 0 && yearOfEnteredTo == 0 
-        && strcmp(faculty, "0") == 0 
-        && strcmp(profession, "0") == 0)
+        if (strcmp(surname, "0") == 0 && birthdayFrom.isZero() && birthdayTo.isZero() && groupFrom == 0 && groupTo == 0 && avgScoreFrom == 0 && avgScoreTo == 0 && scholarshipAmountFrom == 0 && scholarshipAmountTo == 0 && yearOfEnteredFrom == 0 && yearOfEnteredTo == 0 && strcmp(faculty, "0") == 0 && strcmp(profession, "0") == 0)
         {
             return false;
         }
@@ -163,7 +157,7 @@ public:
     }
 };
 
-void searchData()
+void searchData(bool canDelete = false)
 {
     ifstream file("student.dat", ios::in);
 
@@ -178,20 +172,50 @@ void searchData()
     gotoxy(0, 7);
     cout << endl;
 
-    bool isFound = false;
-
-    while (file.read((char *)&student, sizeof student))
+    if (!canDelete)
     {
-        if (studentForSearch.isSearchMetched(student))
+        bool isFound = false;
+
+        while (file.read((char *)&student, sizeof student))
         {
-            isFound = true;
-            student.printData();
+            if (studentForSearch.isSearchMetched(student))
+            {
+                isFound = true;
+                student.printData();
+            }
         }
-    }
 
-    if (!isFound)
+        if (!isFound)
+        {
+            cout << "Ничего не найдено" << endl;
+        }
+
+        file.close();
+        file.clear();
+    }
+    else
     {
-        cout << "Ничего не найдено" << endl;
+        ofstream tmpFile("tmp.dat", ios::binary);
+
+        while (file.read((char *)&student, sizeof student))
+        {
+            if (studentForSearch.isSearchMetched(student))
+            {
+                student.printData();
+            }
+            else
+            {
+                tmpFile.write((char *) & student, sizeof student);
+            }
+        }
+        file.close();
+        file.clear();
+        tmpFile.close();
+        tmpFile.clear();
+
+        remove("student.dat");
+        rename("tmp.dat", "student.dat");
+
     }
 }
 #endif
