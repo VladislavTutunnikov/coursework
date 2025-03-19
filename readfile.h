@@ -18,6 +18,9 @@ void readFile()
         student.printData();
         printLineForTable();
     }
+
+    file.close();
+    file.clear();
 }
 
 #endif

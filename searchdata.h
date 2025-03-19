@@ -6,7 +6,6 @@
 #include <string.h>
 #include "student.h"
 #include "table.h"
-#include "removedata.h"
 using namespace std;
 
 class StudentForSearch : public Student
@@ -157,7 +156,7 @@ public:
     }
 };
 
-void searchData(bool canDelete = false)
+void searchData()
 {
     ifstream file("student.dat", ios::in);
 
@@ -172,50 +171,24 @@ void searchData(bool canDelete = false)
     gotoxy(0, 7);
     cout << endl;
 
-    if (!canDelete)
+    bool isFound = false;
+
+    while (file.read((char *)&student, sizeof student))
     {
-        bool isFound = false;
-
-        while (file.read((char *)&student, sizeof student))
+        if (studentForSearch.isSearchMetched(student))
         {
-            if (studentForSearch.isSearchMetched(student))
-            {
-                isFound = true;
-                student.printData();
-            }
+            isFound = true;
+            student.printData();
         }
-
-        if (!isFound)
-        {
-            cout << "Ничего не найдено" << endl;
-        }
-
-        file.close();
-        file.clear();
     }
-    else
+
+    if (!isFound)
     {
-        ofstream tmpFile("tmp.dat", ios::binary);
-
-        while (file.read((char *)&student, sizeof student))
-        {
-            if (studentForSearch.isSearchMetched(student))
-            {
-                student.printData();
-            }
-            else
-            {
-                tmpFile.write((char *) & student, sizeof student);
-            }
-        }
-        file.close();
-        file.clear();
-        tmpFile.close();
-        tmpFile.clear();
-
-        remove("student.dat");
-        rename("tmp.dat", "student.dat");
-
+        cout << "Ничего не найдено" << endl;
     }
+
+    file.close();
+    file.clear();
 }
+
 #endif

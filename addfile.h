@@ -28,8 +28,8 @@ void addFile()
         gotoxy(0, y + 2);
         y += 2;
     }
-    file.clear();
     file.close();
+    file.clear();
     cout << endl;
 }
 

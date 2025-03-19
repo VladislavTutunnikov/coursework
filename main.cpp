@@ -4,6 +4,8 @@
 #include "readfile.h"
 #include "addfile.h"
 #include "searchdata.h" 
+#include "removedata.h"
+#include "table.h";
 using namespace std;
 
 int main()
@@ -48,6 +50,17 @@ int main()
         case 4:
         {
             searchData();
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            animation();
+            break;
+        }
+        case 6:
+        {
+            removeData();
             break;
         }
         case 0:

@@ -29,8 +29,8 @@ void writeFile()
         y += 2;
         gotoxy(0, y);
     }
-    file.clear();
     file.close();
+    file.clear();
     cout << endl;
 }
 
