@@ -8,9 +8,31 @@ using namespace std;
 
 class Date
 {
+private:
     int day;
     int month;
     int year;
+
+    string dayForInput;
+    string monthForInput;
+    string yearForInput;
+
+    void toString()
+    {
+        string tmpString = to_string(day);
+        if (tmpString.length() == 1)
+            dayForInput = '0' + tmpString;
+        else
+            dayForInput = tmpString;
+
+        tmpString = to_string(month);
+        if (tmpString.length() == 1)
+            monthForInput = '0' + tmpString;
+        else
+            monthForInput = tmpString;
+        
+        yearForInput = to_string(year);
+    }
 
 public:
     Date()
@@ -29,11 +51,13 @@ public:
         cin >> month;
         gotoxy(x3, y);
         cin >> year;
+
+        toString();
     }
 
     void printDate()
     {
-        cout << "     " << setw(2) << day << "." << setw(2) << month << "." << setw(4) << year;
+        cout << "     " << setw(2) << dayForInput << "." << setw(2) << monthForInput << "." << setw(4) << yearForInput;
     }
 
     int getDay()
