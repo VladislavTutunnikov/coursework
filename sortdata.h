@@ -38,30 +38,180 @@ void fillArray(Student *array)
     readFile.clear();
 }
 
+void resetFile(Student *arrayOfStudents, int countOfStudents)
+{
+    ofstream file("student.dat", ios::binary);
+
+    for (int i = 0; i < countOfStudents; i++)
+    {
+        file.write((char*) & arrayOfStudents[i], sizeof arrayOfStudents[i]);
+    }
+    file.close();
+    file.clear();
+}
+
 void sortData()
 {
     bool isOpen = true;
 
     while (isOpen)
     {
-        cout << "1 - Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾ Ð´Ð°Ñ‚Ðµ Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ." << endl
-             << "2 - Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾ Ð³Ñ€ÑƒÐ¿Ð¿Ðµ." << endl
-             << "3 - Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾ ÑÑ€ÐµÐ´Ð½ÐµÐ¼Ñƒ Ð±Ð°Ð»Ð»Ñƒ." << endl
-             << "4 - Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾ ÑÑƒÐ¼Ð¼Ðµ ÑÑ‚Ð¸Ð¿ÐµÐ½Ð´Ð¸Ð¸." << endl
-             << "5 - Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾ Ð³Ð¾Ð´Ñƒ Ð·Ð°Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ñ." << endl
-             << "0 - Ð’Ñ‹Ñ…Ð¾Ð´." << endl;
+        cout << "1 - Ñîðòèðîâàòü ïî äàòå ðîæäåíèÿ." << endl
+             << "2 - Ñîðòèðîâàòü ïî ãðóïïå." << endl
+             << "3 - Ñîðòèðîâàòü ïî ñðåäíåìó áàëëó." << endl
+             << "4 - Ñîðòèðîâàòü ïî ñóììå ñòèïåíäèè." << endl
+             << "5 - Ñîðòèðîâàòü ïî ãîäó çà÷èñëåíèÿ." << endl
+             << "0 - Âûõîä." << endl;
 
         int userInput;
-        cout << "Ð¡Ð´ÐµÐ»Ð°Ð¹Ñ‚Ðµ Ð²Ñ‹Ð±Ð¾Ñ€: ";
+        cout << "Ñäåëàéòå âûáîð: ";
         cin >> userInput;
         cin.get();
 
         int countOfStudents = getCountOfStudents();
         Student *arrayOfStudents = new Student[countOfStudents];
         fillArray(arrayOfStudents);
-
         
 
+        switch (userInput)
+        {
+        case 1:
+        {
+            bool flag;
+            Student tmpStudent;
+
+            for (int i = countOfStudents - 2; i >= 0; i--)
+            {
+                flag = false;
+
+                for (int j = 0; j <= i; j++)
+                {
+                    if (arrayOfStudents[j].getBirthday().isGreater(arrayOfStudents[j + 1].getBirthday()))
+                    {
+                        tmpStudent = arrayOfStudents[j];
+                        arrayOfStudents[j] = arrayOfStudents[j + 1];
+                        arrayOfStudents[j + 1] = tmpStudent;
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                    break;
+            }
+            
+            break;
+        }  
+        case 2:
+        {
+            bool flag;
+            Student tmpStudent;
+
+            for (int i = countOfStudents - 2; i >= 0; i--)
+            {
+                flag = false;
+
+                for (int j = 0; j <= i; j++)
+                {
+                    if (arrayOfStudents[j].getGroup() > arrayOfStudents[j + 1].getGroup())
+                    {
+                        tmpStudent = arrayOfStudents[j];
+                        arrayOfStudents[j] = arrayOfStudents[j + 1];
+                        arrayOfStudents[j + 1] = tmpStudent;
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                    break;
+            }
+            
+            break;
+        }
+        case 3:
+        {
+            bool flag;
+            Student tmpStudent;
+
+            for (int i = countOfStudents - 2; i >= 0; i--)
+            {
+                flag = false;
+
+                for (int j = 0; j <= i; j++)
+                {
+                    if (arrayOfStudents[j].getAvgScore() > arrayOfStudents[j + 1].getAvgScore())
+                    {
+                        tmpStudent = arrayOfStudents[j];
+                        arrayOfStudents[j] = arrayOfStudents[j + 1];
+                        arrayOfStudents[j + 1] = tmpStudent;
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                    break;
+            }
+            break;
+        }
+        case 4:
+        {
+            bool flag;
+            Student tmpStudent;
+
+            for (int i = countOfStudents - 2; i >= 0; i--)
+            {
+                flag = false;
+
+                for (int j = 0; j <= i; j++)
+                {
+                    if (arrayOfStudents[j].getScholarshipAmount() > arrayOfStudents[j + 1].getScholarshipAmount())
+                    {
+                        tmpStudent = arrayOfStudents[j];
+                        arrayOfStudents[j] = arrayOfStudents[j + 1];
+                        arrayOfStudents[j + 1] = tmpStudent;
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                    break;
+            }
+            break;
+        }
+        case 5:
+        {
+            bool flag;
+            Student tmpStudent;
+
+            for (int i = countOfStudents - 2; i >= 0; i--)
+            {
+                flag = false;
+
+                for (int j = 0; j <= i; j++)
+                {
+                    if (arrayOfStudents[j].getYearOfEntered() > arrayOfStudents[j + 1].getYearOfEntered())
+                    {
+                        tmpStudent = arrayOfStudents[j];
+                        arrayOfStudents[j] = arrayOfStudents[j + 1];
+                        arrayOfStudents[j + 1] = tmpStudent;
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                    break;
+            }
+            break;
+        }
+        case 0:
+        {
+            isOpen = false;
+            break;
+        } 
+        default:
+        {
+            cout << "Íåâåðíîå çíà÷åíèå!";
+            break;
+        }
+        }
+
+        isOpen = false;
+        resetFile(arrayOfStudents, countOfStudents);
+        system("cls");
     }
 }
 

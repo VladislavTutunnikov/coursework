@@ -72,6 +72,13 @@ public:
         
         return true;
     }
+
+    bool isGreater(Date otherDate)
+    {
+        if (year != otherDate.getYear()) return year > otherDate.getYear();
+        if (month != otherDate.getMonth()) return month > otherDate.getMonth();
+        return day > otherDate.day;
+    }
 };
 
 #endif DATE_H

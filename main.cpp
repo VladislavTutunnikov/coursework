@@ -5,6 +5,7 @@
 #include "addfile.h"
 #include "searchdata.h" 
 #include "removedata.h"
+#include "sortdata.h"
 #include "table.h";
 using namespace std;
 
@@ -54,9 +55,7 @@ int main()
         }
         case 5:
         {
-            system("cls");
-            welcomeAnimation();
-            goodbyeAnimation();
+            sortData();
             break;
         }
         case 6:
