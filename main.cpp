@@ -6,6 +6,7 @@
 #include "searchdata.h" 
 #include "removedata.h"
 #include "sortdata.h"
+#include "aboutprogram.h"
 #include "table.h";
 using namespace std;
 
@@ -14,6 +15,8 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+    welcomeAnimation();
+    system("cls");
     bool isOpen = true;
 
     while (isOpen)
@@ -26,6 +29,7 @@ int main()
              << "4 - Поиск данных." << endl
              << "5 - Сортировка данных." << endl
              << "6 - Удаление." << endl
+             << "7 - О программе." << endl
              << "0 - Выход из программы." << endl;
         cout << "Сделайте выбор: ";
         cin >> userInput;
@@ -63,6 +67,11 @@ int main()
             removeData();
             break;
         }
+        case 7:
+        {
+            aboutProgram();
+            break;
+        }
         case 0:
         {
             isOpen = false;
@@ -78,5 +87,6 @@ int main()
         system("cls");
     }
 
+    goodbyeAnimation();
     return 0;
 }

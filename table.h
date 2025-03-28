@@ -42,9 +42,14 @@ void searchHeader()
     cout << "+--------------------+------------------+----------+----------+---------------+--------------+------------------+---------------------+" << endl;
 }
 
-void welcomeAnimation()
+void aboutProgramLine()
 {
-    int ms = 150;
+  cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
+}
+
+void welcomeAnimation(int s = 100)
+{
+    int ms = s;
 
     cout << R"(
             _____
@@ -447,9 +452,9 @@ void welcomeAnimation()
     system("cls");
 }
 
-void goodbyeAnimation()
+void goodbyeAnimation(int s = 100)
 {
-    int ms = 150;
+    int ms = s;
 
     cout << R"(
             _____
