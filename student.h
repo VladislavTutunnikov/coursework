@@ -39,18 +39,18 @@ public:
         cin.getline(surname, 25);
         gotoxy(24, y);
         birthday.inputDate(24, 27, 30, y);
-        gotoxy(40, y);
+        gotoxy(43, y);
         cin >> group;
-        gotoxy(49, y);
+        gotoxy(54, y);
         cin >> avgScore;
-        gotoxy(60, y);
+        gotoxy(65, y);
         cin >> scholarshipAmount;
-        gotoxy(76, y);
+        gotoxy(81, y);
         cin >> yearOfEntered;
         cin.get();
-        gotoxy(91, y);
+        gotoxy(96, y);
         cin.getline(faculty, 25);
-        gotoxy(110, y);
+        gotoxy(115, y);
         cin.getline(profession, 25);
     }
 
@@ -59,7 +59,7 @@ public:
         cout << "|" << setw(20) << surname
              << "|"; 
              birthday.printDate();
-             cout << "|" << setw(8) << group
+             cout << "|" << setw(10) << group
              << "|" << setw(10) << avgScore
              << "|" << setw(15) << scholarshipAmount
              << "|" << setw(14) << yearOfEntered

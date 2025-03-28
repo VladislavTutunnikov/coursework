@@ -15,7 +15,6 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    welcomeAnimation();
     system("cls");
     bool isOpen = true;
 
@@ -86,7 +85,5 @@ int main()
         system("pause");
         system("cls");
     }
-
-    goodbyeAnimation();
     return 0;
 }

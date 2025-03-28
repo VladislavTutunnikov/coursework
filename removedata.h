@@ -34,31 +34,42 @@ void searchAndRemoveData()
 
     searchHeader();
     studentForSearch.inputData();
-    gotoxy(0, 7);
+    gotoxy(0, 6);
     cout << endl;
 
     ofstream tmpFile("tmp.dat", ios::binary);
+
+    bool isFound = false;
 
     while (file.read((char *)&student, sizeof student))
     {
         if (studentForSearch.isSearchMetched(student))
         {
+            isFound = true;
             student.printData();
+            printLineForTable();
         }
         else
         {
             tmpFile.write((char *)&student, sizeof student);
         }
     }
+    if (!isFound)
+    {
+        cout << "Ничего не найдено" << endl;
+    }
     file.close();
     file.clear();
     tmpFile.close();
     tmpFile.clear();
 
-    if (isAgree())
+    if (isFound)
     {
-        remove("student.dat");
-        rename("tmp.dat", "student.dat");
+        if (isAgree())
+        {
+            remove("student.dat");
+            rename("tmp.dat", "student.dat");
+        }
     }
 }
 

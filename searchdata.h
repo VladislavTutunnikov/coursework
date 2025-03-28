@@ -168,7 +168,7 @@ void searchData()
 
     searchHeader();
     studentForSearch.inputData();
-    gotoxy(0, 7);
+    gotoxy(0, 6);
     cout << endl;
 
     bool isFound = false;
@@ -179,6 +179,7 @@ void searchData()
         {
             isFound = true;
             student.printData();
+            printLineForTable();
         }
     }
 

@@ -57,7 +57,7 @@ public:
 
     void printDate()
     {
-        cout << "     " << setw(2) << dayForInput << "." << setw(2) << monthForInput << "." << setw(4) << yearForInput;
+        cout << "        " << setw(2) << dayForInput << "." << setw(2) << monthForInput << "." << setw(4) << yearForInput;
     }
 
     int getDay()
